@@ -1,0 +1,40 @@
+{% extends 'shop/layouts/main.html'%}
+
+{% block title %}
+    SHOPKART | ONLIE SHOPPING
+{% endblock title %}
+
+
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{{category_name}} products</h4>
+                <hr style="border-color:black;">
+                 {% include "shop/inc/message.html" %}
+            </div>
+        {% for item in products %}
+       <div class="col-md-4 col-lg-3">
+            <div class="card py-3 m-2 " style="height:auto" >
+                <img src="{{item.product_image.url }}"  class="img-fluid card-image-top"
+                    alt="categories" style="height:220px">
+                <a href="{% url 'product_deatils' category_name item.name %}">
+                <div class="card-body">
+                    <h5 class="card-title text-primary p-1">{{item.name}}</h5>
+                    <p class="card-text p-1">
+                        <span class="float-start old_price p-1"><s>Rs.{{item.original_price | stringformat:'d' }}</s></span>
+                        <span class="float-end new_price p-1" >Rs.{{item.selling_price | stringformat:'d' }}</span>
+                    </p>  
+                </div>
+            </a>
+            </div>
+        </div>         
+    {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
